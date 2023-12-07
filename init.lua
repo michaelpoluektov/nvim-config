@@ -27,7 +27,13 @@ return {
   },
 
   lsp = {
-    -- customize lsp formatting options
+    config = {
+       clangd = {
+         capabilities = {
+           offsetEncoding = "utf-8",
+         },
+       }, -- customize lsp formatting options
+    },
     formatting = {
       -- control auto formatting on save
       format_on_save = {
@@ -70,9 +76,9 @@ return {
   polish = function()
     -- Set up custom filetypes
     vim.filetype.add {
-      -- extension = {
-      --   foo = "fooscript",
-      -- },
+      extension = {
+        td = "tablegen",
+      },
       filename = {
         ["Jenkinsfile"] = "groovy",
         [".clangd"] = "yaml",
