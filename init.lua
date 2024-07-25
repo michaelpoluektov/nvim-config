@@ -18,7 +18,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "nord",
+  -- colorscheme = "nord",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
@@ -83,9 +83,9 @@ return {
         ["Jenkinsfile"] = "groovy",
         [".clangd"] = "yaml",
       },
-      -- pattern = {
-      --   ["~/%.config/foo/.*"] = "fooscript",
-      -- },
+      pattern = {
+        ["*.env*"] = "sh",
+      }
     }
     vim.opt.shiftwidth = 4
     vim.opt.smarttab = true
@@ -102,6 +102,14 @@ return {
 
       opt.foldmethod = "expr"
       opt.foldexpr = "nvim_treesitter#foldexpr()"
-    end -- }
+    end
+
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "groovy",
+      callback = function()
+        vim.opt_local.shiftwidth = 2
+        vim.opt_local.tabstop = 2
+      end,
+    })
   end,
 }
